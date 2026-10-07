@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./App.css";
 
 import fries from "./assets/Images/fries.jpg";
-import brochette from "./assets/Images/brochette.jpg";
+import brochetteOnPlate from "./assets/Images/brochette on plate.jpg";
 import fishOnPlate from "./assets/Images/fish-onplate.jpg";
 import plantain from "./assets/Images/plantain.jpg";
 import riceNew from "./assets/Images/rice-new.jpg";
@@ -178,7 +178,7 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
           <h2>From the Grill</h2>
           <MenuItems items={grilledDishes} onAddToCart={onAddToCart} />
         </div>
-        <img src={brochette} alt="Grilled brochettes with fresh vegetables" />
+        <img src={brochetteOnPlate} alt="A plated serving of grilled brochettes" />
       </section>
 
       <section className="featured-dish">

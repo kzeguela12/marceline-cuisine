@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import "./App.css";
 
-import hero from "./assets/Images/hero.jpg";
+import hero from "./assets/Images/fish-onplate.jpg";
+import previousHero from "./assets/Images/hero.jpg";
 import fish from "./assets/Images/fish-with-onions.jpg";
 import lamb from "./assets/Images/lamb-onions.jpg";
 import rice from "./assets/Images/rice.jpg";
@@ -26,6 +27,7 @@ const cateringEvents = [
 ];
 
 const galleryPhotos = [
+  { src: previousHero, alt: "Marceline Cuisine's original featured fish dish" },
   { src: brochette, alt: "Freshly prepared grilled brochettes" },
   { src: brochetteOnPlate, alt: "A plated West African favorite" },
   { src: fishOnPlate, alt: "A fish dish served with traditional sides" },
