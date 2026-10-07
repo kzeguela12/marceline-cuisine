@@ -1,0 +1,323 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./App.css";
+
+import fish from "./assets/Images/fish-with-onions.jpg";
+import lamb from "./assets/Images/lamb-onions.jpg";
+import rice from "./assets/Images/rice.jpg";
+import fries from "./assets/Images/fries.jpg";
+
+const emailAddress = "kntamon@yahoo.com";
+
+const appetizers = [
+  { name: "Beignets", price: 10 },
+  { name: "Chicken Nems", price: 10 },
+  { name: "Shrimp Nems", price: 12 },
+  { name: "Fried Plantains", price: 5 },
+];
+
+const entrees = [
+  { name: "Grilled Fish with Attiéké", price: 25 },
+  { name: "Oxtail and Rice Platter", price: 25 },
+  { name: "Fish Yassa", price: 23 },
+  { name: "Spinach Stew with Fish", price: 30 },
+  { name: "Spinach Stew with Smoked Turkey", price: 25 },
+  { name: "Potato Leaf Stew", price: 25 },
+];
+
+const grilledDishes = [
+  { name: "Chicken Kabobs", price: 18 },
+  { name: "Beef Kabobs", price: 20 },
+  { name: "Grilled Chicken", price: 20 },
+  { name: "Lamb", price: 27 },
+];
+
+const riceFavorites = [
+  { name: "Jollof Rice", price: 18 },
+  { name: "Riz au Gras", price: 15 },
+  { name: "Tchep", price: 15 },
+  { name: "White Rice", price: 5 },
+  { name: "Attiéké", price: 7 },
+];
+
+const soups = [
+  { name: "Placali & Palm Soup", price: 25 },
+  { name: "Peanut Butter Soup", price: 20 },
+  { name: "Kedjenou & Attiéké", price: 25 },
+];
+
+const sides = [{ name: "Loaded Fries", price: 14 }];
+
+const drinks = [
+  { name: "Sweet Millet", price: 10 },
+  { name: "Sweet Pineapple Ginger", price: 6 },
+  { name: "Hibiscus", price: 6 },
+  { name: "Soft Drinks", price: 2 },
+];
+
+function MenuItems({ items, onAddToCart }) {
+  return (
+    <div className="menu-list">
+      {items.map((item) => (
+        <div className="menu-item" key={item.name}>
+          <span>{item.name}</span>
+          <span className="menu-item-price">${item.price}</span>
+          <button
+            className="add-to-cart-button"
+            onClick={() => onAddToCart(item)}
+            type="button"
+          >
+            Add
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function MenuSection({ title, items, onAddToCart }) {
+  return (
+    <section className="menu-section">
+      <h2>{title}</h2>
+      <MenuItems items={items} onAddToCart={onAddToCart} />
+    </section>
+  );
+}
+
+export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
+  const [fulfillment, setFulfillment] = useState("Pickup");
+  const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
+  const subtotal = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0,
+  );
+
+  useEffect(() => {
+    if (window.location.hash === "#order") {
+      document.getElementById("order")?.scrollIntoView();
+    }
+  }, []);
+
+  function submitOrder(event) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const orderLines = cart.map(
+      (item) =>
+        `${item.quantity} x ${item.name} — $${(item.price * item.quantity).toFixed(2)}`,
+    );
+    const deliveryAddress =
+      fulfillment === "Delivery" ? formData.get("deliveryAddress") : "Pickup";
+    const message = [
+      "New Marceline Cuisine order",
+      "",
+      `Name: ${formData.get("customerName")}`,
+      `Phone: ${formData.get("customerPhone")}`,
+      `Email: ${formData.get("customerEmail")}`,
+      `Fulfillment: ${fulfillment}`,
+      `Delivery address: ${deliveryAddress}`,
+      "",
+      "Order:",
+      ...orderLines,
+      "",
+      `Subtotal: $${subtotal.toFixed(2)}`,
+      fulfillment === "Delivery"
+        ? "Please confirm delivery availability and any delivery fee."
+        : "",
+      "",
+      formData.get("orderNotes")
+        ? `Notes: ${formData.get("orderNotes")}`
+        : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+    const subject = encodeURIComponent("Marceline Cuisine order");
+
+    window.open(
+      `mailto:${emailAddress}?subject=${subject}&body=${encodeURIComponent(message)}`,
+      "_self",
+    );
+  }
+
+  return (
+    <div className="menu-page">
+      <div className="menu-header">
+        <Link className="menu-home-link" to="/">
+          Home
+        </Link>
+        <h1>Our Menu</h1>
+        <p>Authentic West African Cuisine</p>
+        <a className="menu-cart-link" href="#order">
+          Your Order <span>{cartCount}</span>
+        </a>
+      </div>
+
+      <MenuSection
+        title="Appetizers"
+        items={appetizers}
+        onAddToCart={onAddToCart}
+      />
+
+      <section className="featured-dish">
+        <img src={fish} alt="Grilled fish with onions and vegetables" />
+        <div>
+          <h2>Signature Entrées</h2>
+          <MenuItems items={entrees} onAddToCart={onAddToCart} />
+        </div>
+      </section>
+
+      <section className="featured-dish reverse">
+        <div>
+          <h2>From the Grill</h2>
+          <MenuItems items={grilledDishes} onAddToCart={onAddToCart} />
+        </div>
+        <img src={lamb} alt="Grilled lamb with onions" />
+      </section>
+
+      <section className="featured-dish">
+        <img src={rice} alt="West African rice dish" />
+        <div>
+          <h2>Rice Favorites</h2>
+          <MenuItems items={riceFavorites} onAddToCart={onAddToCart} />
+        </div>
+      </section>
+
+      <MenuSection title="Soups" items={soups} onAddToCart={onAddToCart} />
+
+      <section className="featured-dish reverse sides-feature">
+        <img src={fries} alt="Loaded fries with house-made toppings" />
+        <div>
+          <h2>Sides</h2>
+          <MenuItems items={sides} onAddToCart={onAddToCart} />
+        </div>
+      </section>
+
+      <MenuSection title="Drinks" items={drinks} onAddToCart={onAddToCart} />
+
+      <p className="menu-note">
+        All entrée dishes are served with your choice of Rice or Attiéké.
+      </p>
+
+      <section className="order-section" id="order">
+        <div className="order-heading">
+          <p className="section-eyebrow">Pickup or special delivery</p>
+          <h2>Your Order</h2>
+        </div>
+
+        {cart.length === 0 ? (
+          <p className="empty-cart-message">
+            Your cart is empty. Add dishes from the menu above to get started.
+          </p>
+        ) : (
+          <>
+            <div className="cart-items" aria-live="polite">
+              {cart.map((item) => (
+                <div className="cart-row" key={item.name}>
+                  <span className="cart-item-name">
+                    {item.name}
+                    <small>
+                      ${item.price.toFixed(2)} each · Qty {item.quantity}
+                    </small>
+                  </span>
+                  <span className="cart-line-total">
+                    ${(item.price * item.quantity).toFixed(2)}
+                  </span>
+                  <button
+                    className="remove-cart-item"
+                    onClick={() => onRemoveFromCart(item.name)}
+                    type="button"
+                    aria-label={`Remove one ${item.name} from your order`}
+                  >
+                    −
+                  </button>
+                  <button
+                    className="add-cart-item"
+                    onClick={() => onAddToCart(item)}
+                    type="button"
+                    aria-label={`Add one ${item.name} to your order`}
+                  >
+                    +
+                  </button>
+                </div>
+              ))}
+              <p className="cart-subtotal">
+                Subtotal <strong>${subtotal.toFixed(2)}</strong>
+              </p>
+              <p className="delivery-fee-note">
+                Any delivery fee will be confirmed before your order is
+                finalized.
+              </p>
+            </div>
+
+            <form className="order-form" onSubmit={submitOrder}>
+              <h3>Where should we send your order?</h3>
+              <fieldset className="fulfillment-options">
+                <legend>Choose pickup or delivery</legend>
+                {["Pickup", "Delivery"].map((option) => (
+                  <label key={option}>
+                    <input
+                      checked={fulfillment === option}
+                      name="fulfillment"
+                      onChange={() => setFulfillment(option)}
+                      type="radio"
+                      value={option}
+                    />
+                    {option === "Pickup" ? "Order Pickup" : "Special Delivery"}
+                  </label>
+                ))}
+              </fieldset>
+
+              <div className="order-form-grid">
+                <label>
+                  Your name
+                  <input autoComplete="name" name="customerName" required />
+                </label>
+                <label>
+                  Phone number
+                  <input
+                    autoComplete="tel"
+                    name="customerPhone"
+                    required
+                    type="tel"
+                  />
+                </label>
+                <label>
+                  Email address
+                  <input
+                    autoComplete="email"
+                    name="customerEmail"
+                    required
+                    type="email"
+                  />
+                </label>
+                {fulfillment === "Delivery" && (
+                  <label className="delivery-address-field">
+                    Delivery address
+                    <textarea
+                      autoComplete="street-address"
+                      name="deliveryAddress"
+                      required
+                      rows="3"
+                    />
+                  </label>
+                )}
+                <label className="order-notes-field">
+                  Notes or special requests (optional)
+                  <textarea name="orderNotes" rows="3" />
+                </label>
+              </div>
+
+              <button className="catering-quote-button order-submit-button" type="submit">
+                Submit Order by Email
+              </button>
+              <p className="payment-note">
+                Submitting opens an email with your order details. We’ll
+                confirm availability and payment directly; online payment is
+                not set up yet.
+              </p>
+            </form>
+          </>
+        )}
+      </section>
+    </div>
+  );
+}
