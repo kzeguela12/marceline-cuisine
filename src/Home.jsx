@@ -10,7 +10,6 @@ import fries from "./assets/Images/fries.jpg";
 import gblofoto from "./assets/Images/gblofoto.jpg";
 import brochette from "./assets/Images/brochette.jpg";
 import brochetteOnPlate from "./assets/Images/brochette on plate.jpg";
-import fishOnPlate from "./assets/Images/fish-onplate.jpg";
 import fishVege from "./assets/Images/fish-vege.jpg";
 import plantain from "./assets/Images/plantain.jpg";
 import riceNew from "./assets/Images/rice-new.jpg";
@@ -30,7 +29,7 @@ const galleryPhotos = [
   { src: previousHero, alt: "Marceline Cuisine's original featured fish dish" },
   { src: brochette, alt: "Freshly prepared grilled brochettes" },
   { src: brochetteOnPlate, alt: "A plated West African favorite" },
-  { src: fishOnPlate, alt: "A fish dish served with traditional sides" },
+  { src: hero, alt: "A fish dish served with traditional sides" },
   { src: fishVege, alt: "Fish and vegetables prepared with fresh herbs" },
   { src: plantain, alt: "Golden fried plantains" },
   { src: riceNew, alt: "A tray of seasoned West African rice" },
@@ -60,10 +59,17 @@ export default function Home({ cartCount }) {
       <section
         id="home"
         className="hero"
-        style={{
-          backgroundImage: `url(${hero})`,
-        }}
       >
+        <div className="hero-slideshow" aria-hidden="true">
+          <div
+            className="hero-slide hero-slide-current"
+            style={{ backgroundImage: `url(${hero})` }}
+          />
+          <div
+            className="hero-slide hero-slide-previous"
+            style={{ backgroundImage: `url(${previousHero})` }}
+          />
+        </div>
         <div className="overlay">
           <h1 className="hero-title">Marceline Cuisine</h1>
           <p className="hero-description">
