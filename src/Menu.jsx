@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./App.css";
 
-import fish from "./assets/Images/fish-with-onions.jpg";
-import lamb from "./assets/Images/lamb-onions.jpg";
-import rice from "./assets/Images/rice.jpg";
 import fries from "./assets/Images/fries.jpg";
+import brochette from "./assets/Images/brochette.jpg";
+import fishOnPlate from "./assets/Images/fish-onplate.jpg";
+import plantain from "./assets/Images/plantain.jpg";
+import riceNew from "./assets/Images/rice-new.jpg";
 
 const emailAddress = "kntamon@yahoo.com";
 
@@ -75,11 +76,14 @@ function MenuItems({ items, onAddToCart }) {
   );
 }
 
-function MenuSection({ title, items, onAddToCart }) {
+function MenuSection({ title, items, onAddToCart, image }) {
   return (
-    <section className="menu-section">
-      <h2>{title}</h2>
-      <MenuItems items={items} onAddToCart={onAddToCart} />
+    <section className={`menu-section${image ? " menu-section-with-image" : ""}`}>
+      <div>
+        <h2>{title}</h2>
+        <MenuItems items={items} onAddToCart={onAddToCart} />
+      </div>
+      {image && <img className="menu-section-image" src={image.src} alt={image.alt} />}
     </section>
   );
 }
@@ -155,10 +159,14 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         title="Appetizers"
         items={appetizers}
         onAddToCart={onAddToCart}
+        image={{
+          src: plantain,
+          alt: "Golden fried plantains",
+        }}
       />
 
       <section className="featured-dish">
-        <img src={fish} alt="Grilled fish with onions and vegetables" />
+        <img src={fishOnPlate} alt="Grilled fish served with traditional sides" />
         <div>
           <h2>Signature Entrées</h2>
           <MenuItems items={entrees} onAddToCart={onAddToCart} />
@@ -170,11 +178,11 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
           <h2>From the Grill</h2>
           <MenuItems items={grilledDishes} onAddToCart={onAddToCart} />
         </div>
-        <img src={lamb} alt="Grilled lamb with onions" />
+        <img src={brochette} alt="Grilled brochettes with fresh vegetables" />
       </section>
 
       <section className="featured-dish">
-        <img src={rice} alt="West African rice dish" />
+        <img src={riceNew} alt="A tray of seasoned West African rice" />
         <div>
           <h2>Rice Favorites</h2>
           <MenuItems items={riceFavorites} onAddToCart={onAddToCart} />

@@ -7,6 +7,13 @@ import lamb from "./assets/Images/lamb-onions.jpg";
 import rice from "./assets/Images/rice.jpg";
 import fries from "./assets/Images/fries.jpg";
 import gblofoto from "./assets/Images/gblofoto.jpg";
+import brochette from "./assets/Images/brochette.jpg";
+import brochetteOnPlate from "./assets/Images/brochette on plate.jpg";
+import fishOnPlate from "./assets/Images/fish-onplate.jpg";
+import fishVege from "./assets/Images/fish-vege.jpg";
+import plantain from "./assets/Images/plantain.jpg";
+import riceNew from "./assets/Images/rice-new.jpg";
+import vegetables from "./assets/Images/vege.jpg";
 
 const cateringEvents = [
   "Weddings",
@@ -18,6 +25,16 @@ const cateringEvents = [
   "Baby Showers",
 ];
 
+const galleryPhotos = [
+  { src: brochette, alt: "Freshly prepared grilled brochettes" },
+  { src: brochetteOnPlate, alt: "A plated West African favorite" },
+  { src: fishOnPlate, alt: "A fish dish served with traditional sides" },
+  { src: fishVege, alt: "Fish and vegetables prepared with fresh herbs" },
+  { src: plantain, alt: "Golden fried plantains" },
+  { src: riceNew, alt: "A tray of seasoned West African rice" },
+  { src: vegetables, alt: "Colorful vegetables prepared for a meal" },
+];
+
 export default function Home({ cartCount }) {
   return (
     <>
@@ -27,6 +44,7 @@ export default function Home({ cartCount }) {
         </a>
         <nav className="site-nav" aria-label="Main navigation">
           <a href="#home">Home</a>
+          <a href="#gallery">Gallery</a>
           <a href="#about">About Marceline</a>
           <a href="#catering">Catering</a>
           <a href="#contact">Contact</a>
@@ -107,6 +125,25 @@ export default function Home({ cartCount }) {
               Discover the vibrant flavors and warm hospitality of our kitchen.
             </p>
           </article>
+        </div>
+      </section>
+
+      <section className="gallery-section" id="gallery">
+        <div className="gallery-intro">
+          <p className="section-eyebrow">A look into our kitchen</p>
+          <h2>From Our Kitchen</h2>
+          <p>
+            Explore more of the dishes and fresh ingredients that make every
+            Marceline Cuisine gathering special.
+          </p>
+        </div>
+        <div className="gallery-grid">
+          {galleryPhotos.map((photo) => (
+            <figure className="gallery-photo" key={photo.src}>
+              <img src={photo.src} alt={photo.alt} loading="lazy" />
+              <figcaption>{photo.alt}</figcaption>
+            </figure>
+          ))}
         </div>
       </section>
 
