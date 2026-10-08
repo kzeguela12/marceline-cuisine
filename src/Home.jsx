@@ -93,11 +93,11 @@ export default function Home({ cartCount }) {
 
         <div className="food-grid">
           <article className="food-card">
-            <img src={fish} alt="Grilled fish topped with onions and vegetables" />
-            <h3>Grilled Fish</h3>
+            <img src={fish} alt="Braised tilapia topped with onions and vegetables" />
+            <h3>Braised Tilapia</h3>
             <p>
-              Whole grilled fish topped with fresh onions, tomatoes, peppers,
-              and herbs.
+              Tender tilapia braised with fresh onions, tomatoes, peppers, and
+              fragrant herbs.
             </p>
           </article>
 
@@ -113,8 +113,8 @@ export default function Home({ cartCount }) {
             <img src={rice} alt="A serving of jollof rice" />
             <h3>Jollof Rice</h3>
             <p>
-              Our signature West African jollof rice served with seasoned
-              vegetables.
+              Ivorian jollof rice simmered in a rich tomato-pepper sauce with
+              fragrant spices.
             </p>
           </article>
 
@@ -130,7 +130,8 @@ export default function Home({ cartCount }) {
             <img src={gblofoto} alt="A freshly prepared dish from Marceline Cuisine" />
             <h3>A Taste of Marceline</h3>
             <p>
-              Discover the vibrant flavors and warm hospitality of our kitchen.
+              Golden, fluffy beignets, freshly fried and served warm for a
+              delightful taste of home.
             </p>
           </article>
         </div>
