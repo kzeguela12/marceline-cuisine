@@ -113,6 +113,7 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
       fulfillment === "Delivery" ? formData.get("deliveryAddress") : "Pickup";
     const message = [
       "New Marceline Cuisine order",
+      "Customer reports sending payment by Zelle. Please verify payment before confirming the order.",
       "",
       `Name: ${formData.get("customerName")}`,
       `Phone: ${formData.get("customerPhone")}`,
@@ -123,9 +124,10 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
       "Order:",
       ...orderLines,
       "",
-      `Subtotal: $${subtotal.toFixed(2)}`,
+      `Food subtotal: $${subtotal.toFixed(2)}`,
+      "Zelle payment sent to: 443-600-0457",
       fulfillment === "Delivery"
-        ? "Please confirm delivery availability and any delivery fee."
+        ? "Delivery availability and any delivery fee still need confirmation."
         : "",
       "",
       formData.get("orderNotes")
@@ -314,13 +316,39 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
                 </label>
               </div>
 
-              <button className="catering-quote-button order-submit-button" type="submit">
-                Submit Order by Email
+              <div className="zelle-payment-instructions">
+                <h3>Pay with Zelle</h3>
+                <p>
+                  Send <strong>${subtotal.toFixed(2)}</strong> for the food
+                  subtotal to <strong>443-600-0457</strong> using Zelle. Check
+                  that the recipient name is correct in your banking app, and
+                  include your name in the payment note.
+                </p>
+                {fulfillment === "Delivery" && (
+                  <p>
+                    Please wait for Marceline Cuisine to confirm delivery
+                    availability and any delivery fee before paying that fee.
+                  </p>
+                )}
+              </div>
+
+              <label className="payment-confirmation">
+                <input name="paymentSent" required type="checkbox" />
+                I have sent the food subtotal by Zelle. I understand the order
+                is not confirmed until payment and availability are verified.
+              </label>
+
+              <button
+                className="catering-quote-button order-submit-button"
+                type="submit"
+              >
+                I’ve Sent Payment — Email My Order
               </button>
               <p className="payment-note">
-                Submitting opens an email with your order details. We’ll
-                confirm availability and payment directly; online payment is
-                not set up yet.
+                This opens a prefilled email to kntamon@yahoo.com. Review it
+                and press Send in your email app. We do not receive your order
+                until you send the email, and we’ll verify payment before
+                confirming it.
               </p>
             </form>
           </>
