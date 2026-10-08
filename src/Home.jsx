@@ -264,9 +264,13 @@ export default function Home({ cartCount }) {
         <div className="social-section">
           <h3>Follow Along</h3>
           <div className="social-links">
-            <a href="https://www.instagram.com/" rel="noreferrer" target="_blank">
+            <a
+              href="https://www.instagram.com/marcelinecuisine/"
+              rel="noreferrer"
+              target="_blank"
+            >
               <span className="social-icon" aria-hidden="true">◎</span>
-              Instagram
+              Instagram @Marcelinecuisine
             </a>
             <a href="https://www.facebook.com/" rel="noreferrer" target="_blank">
               <span className="social-icon" aria-hidden="true">f</span>
@@ -286,8 +290,7 @@ export default function Home({ cartCount }) {
             </a>
           </div>
           <p className="social-profile-note">
-            Social links currently open each platform. Add Marceline Cuisine’s
-            profile links when they’re ready.
+            Follow Marceline Cuisine on Instagram at @Marcelinecuisine.
           </p>
         </div>
 
