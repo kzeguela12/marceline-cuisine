@@ -963,15 +963,16 @@ section[id] {
     gap:18px;
 }
 
-.menu-list div{
-    display:flex;
-    justify-content:space-between;
+.menu-list .menu-item{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) 4.5rem auto;
+    column-gap:12px;
     align-items:center;
     border-bottom:1px dotted rgba(255,255,255,.2);
     padding:12px 0;
 }
 
-.menu-list span:first-child{
+.menu-list .menu-item > span:first-child{
     font-family:"Cormorant Garamond",serif;
     font-size:25px;
     letter-spacing:.5px;
@@ -981,6 +982,7 @@ section[id] {
     color:#D4AF37;
     font-size:18px;
     font-weight:700;
+    text-align:right;
 }
 
 .menu-item .add-to-cart-button,

@@ -45,6 +45,7 @@ const soups = [
   { name: "Placali & Palm Soup", price: 25 },
   { name: "Peanut Butter Soup", price: 20 },
   { name: "Kedjenou & Attiéké", price: 25 },
+  { name: "Cassava Dough with Okra Soup", price: 25 },
 ];
 
 const sides = [{ name: "Loaded Fries", price: 14 }];
