@@ -12,9 +12,9 @@ const emailAddress = "kntamon@yahoo.com";
 
 const appetizers = [
   { name: "Beignets", price: 10 },
-  { name: "Chicken Nems", price: 10 },
-  { name: "Shrimp Nems", price: 12 },
   { name: "Fried Plantains", price: 5 },
+  { name: "Fried Yuca", price: 5 },
+  { name: "Plantain Beignets", price: 5 },
 ];
 
 const entrees = [
