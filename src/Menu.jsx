@@ -91,6 +91,7 @@ function MenuSection({ title, items, onAddToCart, image }) {
 
 export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
   const [fulfillment, setFulfillment] = useState("Pickup");
+  const [paymentMethod, setPaymentMethod] = useState("Zelle");
   const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
   const subtotal = cart.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -114,7 +115,7 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
       fulfillment === "Delivery" ? formData.get("deliveryAddress") : "Pickup";
     const message = [
       "New Marceline Cuisine order",
-      "Customer reports sending payment by Zelle. Please verify payment before confirming the order.",
+      `Customer reports sending payment by ${paymentMethod}. Please verify payment before confirming the order.`,
       "",
       `Name: ${formData.get("customerName")}`,
       `Phone: ${formData.get("customerPhone")}`,
@@ -126,7 +127,10 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
       ...orderLines,
       "",
       `Food subtotal: $${subtotal.toFixed(2)}`,
-      "Zelle payment sent to: 443-600-0457",
+      paymentMethod === "Zelle"
+        ? "Zelle payment sent to: 443-600-0457"
+        : "Venmo payment sent to: @marceline-cuisine",
+      `Payment method: ${paymentMethod}`,
       fulfillment === "Delivery"
         ? "Delivery availability and any delivery fee still need confirmation."
         : "",
@@ -317,13 +321,48 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
                 </label>
               </div>
 
-              <div className="zelle-payment-instructions">
-                <h3>Pay with Zelle</h3>
+              <fieldset className="fulfillment-options payment-method-options">
+                <legend>Choose a payment method</legend>
+                {["Zelle", "Venmo"].map((option) => (
+                  <label key={option}>
+                    <input
+                      checked={paymentMethod === option}
+                      name="paymentMethod"
+                      onChange={() => setPaymentMethod(option)}
+                      type="radio"
+                      value={option}
+                    />
+                    {option}
+                  </label>
+                ))}
+              </fieldset>
+
+              <div className="payment-instructions">
+                <h3>Pay with {paymentMethod}</h3>
                 <p>
                   Send <strong>${subtotal.toFixed(2)}</strong> for the food
-                  subtotal to <strong>443-600-0457</strong> using Zelle. Check
-                  that the recipient name is correct in your banking app, and
-                  include your name in the payment note.
+                  subtotal{" "}
+                  {paymentMethod === "Zelle" ? (
+                    <>
+                      to <strong>443-600-0457</strong> using Zelle.
+                    </>
+                  ) : (
+                    <>
+                      to{" "}
+                      <strong>
+                        <a
+                          href="https://venmo.com/u/marceline-cuisine"
+                          rel="noreferrer"
+                          target="_blank"
+                        >
+                          @marceline-cuisine
+                        </a>
+                      </strong>{" "}
+                      using Venmo.
+                    </>
+                  )}{" "}
+                  Check that the recipient name is correct in your payment app,
+                  and include your name in the payment note.
                 </p>
                 {fulfillment === "Delivery" && (
                   <p>
@@ -335,8 +374,9 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
 
               <label className="payment-confirmation">
                 <input name="paymentSent" required type="checkbox" />
-                I have sent the food subtotal by Zelle. I understand the order
-                is not confirmed until payment and availability are verified.
+                I have sent the food subtotal by {paymentMethod}. I understand
+                the order is not confirmed until payment and availability are
+                verified.
               </label>
 
               <button

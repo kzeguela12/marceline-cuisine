@@ -1180,29 +1180,39 @@ section[id] {
     font: inherit;
 }
 
-.zelle-payment-instructions {
+.payment-instructions {
     margin-top: 28px;
     padding: 20px 22px;
     border: 1px solid rgba(212, 175, 55, .35);
     background: rgba(212, 175, 55, .06);
 }
 
-.zelle-payment-instructions h3 {
+.payment-instructions h3 {
     margin-bottom: 8px;
     color: #d4af37;
     font-family: "Cormorant Garamond", Georgia, serif;
     font-size: 26px;
 }
 
-.zelle-payment-instructions p {
+.payment-instructions p {
     margin-top: 8px;
     color: #ded8cd;
     font-size: 14px;
     line-height: 1.7;
 }
 
-.zelle-payment-instructions strong {
+.payment-instructions strong {
     color: #f7f4ee;
+}
+
+.payment-instructions a {
+    color: inherit;
+    text-decoration-color: rgba(212, 175, 55, .7);
+    text-underline-offset: 3px;
+}
+
+.payment-method-options {
+    margin-top: 24px;
 }
 
 .payment-confirmation {
