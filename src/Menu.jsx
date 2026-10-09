@@ -7,7 +7,7 @@ import brochetteOnPlate from "./assets/Images/brochette on plate.jpg";
 import fishOnPlate from "./assets/Images/fish-onplate.jpg";
 import plantain from "./assets/Images/plantain.jpg";
 import riceNew from "./assets/Images/rice-new.jpg";
-import westAfricanGreens from "./assets/Images/West African Greens Stew with Fufu.png";
+import westAfricanGreens from "./assets/Images/West African Greens Stew New.png";
 import cassavaOkraSoup from "./assets/Images/West African Okra Stew with Fufu and Olive Oil.png";
 
 const emailAddress = "kntamon@yahoo.com";
