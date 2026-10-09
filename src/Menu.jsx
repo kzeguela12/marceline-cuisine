@@ -8,7 +8,7 @@ import fishOnPlate from "./assets/Images/fish-onplate.jpg";
 import plantain from "./assets/Images/plantain.jpg";
 import riceNew from "./assets/Images/rice-new.jpg";
 import westAfricanGreens from "./assets/Images/West African Greens Stew with Fufu.png";
-import westAfricanOkra from "./assets/Images/West African Okra Stew with Rice.png";
+import cassavaOkraSoup from "./assets/Images/West African Okra Stew with Fufu and Olive Oil.png";
 
 const emailAddress = "kntamon@yahoo.com";
 
@@ -30,7 +30,6 @@ const entrees = [
 
 const westAfricanStews = [
   { name: "West African Greens (Spinach) Stew with Placali", price: 25, image: westAfricanGreens },
-  { name: "West African Okra Stew with Rice", price: 25, image: westAfricanOkra },
 ];
 
 const grilledDishes = [
@@ -52,6 +51,7 @@ const soups = [
   { name: "Placali & Palm Soup", price: 25 },
   { name: "Peanut Butter Soup", price: 20 },
   { name: "Kedjenou & Attiéké", price: 25 },
+  { name: "Cassava Dough with Okra Soup", price: 25 },
 ];
 
 const sides = [{ name: "Loaded Fries", price: 14 }];
@@ -218,7 +218,15 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         </div>
       </section>
 
-      <MenuSection title="Soups" items={soups} onAddToCart={onAddToCart} />
+      <MenuSection
+        title="Soups"
+        items={soups}
+        onAddToCart={onAddToCart}
+        image={{
+          src: cassavaOkraSoup,
+          alt: "West African okra soup served with cassava dough",
+        }}
+      />
 
       <section className="featured-dish reverse sides-feature">
         <img src={fries} alt="Loaded fries with house-made toppings" />
