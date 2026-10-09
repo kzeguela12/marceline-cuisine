@@ -7,6 +7,8 @@ import brochetteOnPlate from "./assets/Images/brochette on plate.jpg";
 import fishOnPlate from "./assets/Images/fish-onplate.jpg";
 import plantain from "./assets/Images/plantain.jpg";
 import riceNew from "./assets/Images/rice-new.jpg";
+import westAfricanGreens from "./assets/Images/West African Greens Stew with Fufu.png";
+import westAfricanOkra from "./assets/Images/West African Okra Stew with Rice.png";
 
 const emailAddress = "kntamon@yahoo.com";
 
@@ -24,6 +26,11 @@ const entrees = [
   { name: "Spinach Stew with Fish", price: 30 },
   { name: "Spinach Stew with Smoked Turkey", price: 25 },
   { name: "Potato Leaf Stew", price: 25 },
+];
+
+const westAfricanStews = [
+  { name: "West African Greens (Spinach) Stew with Placali", price: 25, image: westAfricanGreens },
+  { name: "West African Okra Stew with Rice", price: 25, image: westAfricanOkra },
 ];
 
 const grilledDishes = [
@@ -45,7 +52,6 @@ const soups = [
   { name: "Placali & Palm Soup", price: 25 },
   { name: "Peanut Butter Soup", price: 20 },
   { name: "Kedjenou & Attiéké", price: 25 },
-  { name: "Cassava Dough with Okra Soup", price: 25 },
 ];
 
 const sides = [{ name: "Loaded Fries", price: 14 }];
@@ -177,6 +183,22 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         <div>
           <h2>Signature Entrées</h2>
           <MenuItems items={entrees} onAddToCart={onAddToCart} />
+        </div>
+      </section>
+
+      <section className="menu-section west-african-stews">
+        <h2>West African Stews</h2>
+        <div className="west-african-stew-grid">
+          {westAfricanStews.map(({ image, ...stew }) => (
+            <article className="west-african-stew-card" key={stew.name}>
+              <img
+                className="west-african-stew-image"
+                src={image}
+                alt={stew.name}
+              />
+              <MenuItems items={[stew]} onAddToCart={onAddToCart} />
+            </article>
+          ))}
         </div>
       </section>
 
