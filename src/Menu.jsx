@@ -20,16 +20,27 @@ const appetizers = [
 ];
 
 const entrees = [
-  { name: "Grilled Fish with Attiéké", price: 25 },
   { name: "Oxtail and Rice Platter", price: 25 },
   { name: "Fish Yassa", price: 23 },
-  { name: "Spinach Stew with Fish", price: 30 },
-  { name: "Spinach Stew with Smoked Turkey", price: 25 },
   { name: "Potato Leaf Stew", price: 25 },
 ];
 
 const westAfricanStews = [
-  { name: "West African Greens (Spinach) Stew with Placali", price: 25, image: westAfricanGreens },
+  {
+    name: "West African Greens (Spinach) Stew with Placali",
+    image: westAfricanGreens,
+    options: [
+      { protein: "Chicken", price: 25 },
+      { protein: "Fish", price: 27 },
+    ],
+  },
+];
+
+const riceChoices = ["Jollof Rice", "Tchep", "White Rice", "Attiéké"];
+
+const platterProteins = [
+  { name: "Grilled Chicken", price: 25 },
+  { name: "Grilled Fish", price: 27 },
 ];
 
 const grilledDishes = [
@@ -39,12 +50,12 @@ const grilledDishes = [
   { name: "Lamb", price: 27 },
 ];
 
-const riceFavorites = [
-  { name: "Jollof Rice", price: 20 },
-  { name: "Tchep", price: 15 },
-  { name: "White Rice", price: 5 },
-  { name: "Attiéké", price: 7 },
-];
+const ricePlatters = riceChoices.flatMap((rice) =>
+  platterProteins.map((protein) => ({
+    name: `${rice} Platter with ${protein.name}`,
+    price: protein.price,
+  })),
+);
 
 const soups = [
   { name: "Placali & Palm Soup", price: 25 },
@@ -194,14 +205,20 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
       <section className="menu-section west-african-stews">
         <h2>West African Stews</h2>
         <div className="west-african-stew-grid">
-          {westAfricanStews.map(({ image, ...stew }) => (
-            <article className="west-african-stew-card" key={stew.name}>
+          {westAfricanStews.map(({ image, name, options }) => (
+            <article className="west-african-stew-card" key={name}>
               <img
                 className="west-african-stew-image"
                 src={image}
-                alt={stew.name}
+                alt={name}
               />
-              <MenuItems items={[stew]} onAddToCart={onAddToCart} />
+              <MenuItems
+                items={options.map(({ protein, price }) => ({
+                  name: `${name} with ${protein}`,
+                  price,
+                }))}
+                onAddToCart={onAddToCart}
+              />
             </article>
           ))}
         </div>
@@ -218,12 +235,13 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
       <section className="featured-dish">
         <img src={riceNew} alt="A tray of seasoned West African rice" />
         <div>
-          <h2>Rice Favorites</h2>
+          <h2>Rice &amp; Attiéké Platters</h2>
           <p className="rice-platter-note">
-            Served as a platter with your choice of chicken or grilled fish and
+            Choose Jollof Rice, Tchep, White Rice, or Attiéké. Each platter
+            comes with grilled chicken for $25 or grilled fish for $27, plus
             vegetables.
           </p>
-          <MenuItems items={riceFavorites} onAddToCart={onAddToCart} />
+          <MenuItems items={ricePlatters} onAddToCart={onAddToCart} />
         </div>
       </section>
 

@@ -825,7 +825,10 @@ section[id] {
 }
 
 .menu-page{
-    background:#111;
+    --cuisine-orange:#e47b35;
+    background:
+        radial-gradient(ellipse at 8% 0%, rgba(228,123,53,.08), transparent 28%),
+        #111;
     color:white;
     padding:72px clamp(20px, 7vw, 100px);
     font-family: Inter, Arial, sans-serif;
@@ -834,6 +837,20 @@ section[id] {
 .menu-header{
     text-align:center;
     margin-bottom:90px;
+}
+
+.menu-header::after {
+    display: block;
+    width: 76px;
+    height: 3px;
+    margin: 24px auto 0;
+    background: linear-gradient(
+        90deg,
+        var(--cuisine-orange) 0 33%,
+        #f7f4ee 33% 66%,
+        #4f9b62 66%
+    );
+    content: "";
 }
 
 .menu-home-link{
@@ -915,7 +932,8 @@ section[id] {
     font-size:42px;
     color:#D4AF37;
     margin-bottom:35px;
-    border-bottom:2px solid #D4AF37;
+    border-bottom:2px solid transparent;
+    border-image:linear-gradient(90deg, var(--cuisine-orange), #d4af37, #4f9b62) 1;
     padding-bottom:12px;
 }
 
