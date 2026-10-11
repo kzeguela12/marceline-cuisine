@@ -5,10 +5,10 @@ import "./App.css";
 import fries from "./assets/Images/fries.jpg";
 import brochetteOnPlate from "./assets/Images/brochette on plate.jpg";
 import fishOnPlate from "./assets/Images/fish-onplate.jpg";
-import plantain from "./assets/Images/plantain.jpg";
+import plantainBeignets from "./assets/Images/Plantain beignets .png";
+import okraSoup from "./assets/Images/Okra soup.png";
 import riceNew from "./assets/Images/rice-new.jpg";
-import westAfricanGreens from "./assets/Images/West African Greens Stew New.png";
-import cassavaOkraSoup from "./assets/Images/West African Okra Stew with Fufu and Olive Oil.png";
+import westAfricanGreens from "./assets/Images/SPINICH STEW (1).png";
 
 const emailAddress = "kntamon@yahoo.com";
 
@@ -173,8 +173,8 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         items={appetizers}
         onAddToCart={onAddToCart}
         image={{
-          src: plantain,
-          alt: "Golden fried plantains",
+          src: plantainBeignets,
+          alt: "Golden plantain beignets",
         }}
       />
 
@@ -223,8 +223,8 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         items={soups}
         onAddToCart={onAddToCart}
         image={{
-          src: cassavaOkraSoup,
-          alt: "West African okra soup served with cassava dough",
+          src: okraSoup,
+          alt: "West African okra soup",
         }}
       />
 
