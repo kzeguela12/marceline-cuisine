@@ -40,8 +40,7 @@ const grilledDishes = [
 ];
 
 const riceFavorites = [
-  { name: "Jollof Rice", price: 18 },
-  { name: "Riz au Gras", price: 15 },
+  { name: "Jollof Rice", price: 20 },
   { name: "Tchep", price: 15 },
   { name: "White Rice", price: 5 },
   { name: "Attiéké", price: 7 },
@@ -214,6 +213,10 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         <img src={riceNew} alt="A tray of seasoned West African rice" />
         <div>
           <h2>Rice Favorites</h2>
+          <p className="rice-platter-note">
+            Served as a platter with your choice of chicken or grilled fish and
+            vegetables.
+          </p>
           <MenuItems items={riceFavorites} onAddToCart={onAddToCart} />
         </div>
       </section>
