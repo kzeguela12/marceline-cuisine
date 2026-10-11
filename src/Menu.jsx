@@ -27,11 +27,12 @@ const entrees = [
 
 const westAfricanStews = [
   {
-    name: "West African Greens (Spinach) Stew with Placali",
+    name: "West African Greens (Spinach) Stew",
     image: westAfricanGreens,
     options: [
       { protein: "Chicken", price: 25 },
       { protein: "Fish", price: 27 },
+      { protein: "Smoked Turkey", price: 25 },
     ],
   },
 ];
@@ -210,11 +211,11 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
               <img
                 className="west-african-stew-image"
                 src={image}
-                alt={name}
+                alt={`${name} with Placali`}
               />
               <MenuItems
                 items={options.map(({ protein, price }) => ({
-                  name: `${name} with ${protein}`,
+                  name: `${name} with ${protein} & Placali`,
                   price,
                 }))}
                 onAddToCart={onAddToCart}
