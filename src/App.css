@@ -1055,7 +1055,7 @@ section[id] {
 
 .west-african-stew-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
     gap: 24px;
 }
 
@@ -1067,6 +1067,95 @@ section[id] {
     padding: 6px;
     background: #090908;
     object-fit: cover;
+}
+
+.rice-platter-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.menu-choice-group {
+    min-width: 0;
+    padding: 14px;
+    border: 1px solid rgba(223, 119, 56, .3);
+    border-top: 2px solid rgba(223, 119, 56, .75);
+    background: linear-gradient(145deg, rgba(223, 119, 56, .08), rgba(17, 16, 14, .66));
+}
+
+.menu-choice-group h3 {
+    margin: 0 0 10px;
+    color: #f7f4ee;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 23px;
+    font-weight: 600;
+    line-height: 1.15;
+}
+
+.menu-choice-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+    gap: 8px;
+}
+
+.menu-choice-button {
+    display: grid;
+    grid-template-areas:
+        "name price"
+        "action action";
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 5px 6px;
+    min-width: 0;
+    padding: 9px 8px;
+    border: 1px solid rgba(212, 175, 55, .34);
+    background: rgba(9, 9, 8, .74);
+    color: #f7f4ee;
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+    transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.menu-choice-button:hover,
+.menu-choice-button:focus-visible {
+    transform: translateY(-1px);
+    border-color: var(--ivory-orange);
+    background: rgba(223, 119, 56, .14);
+}
+
+.menu-choice-button:focus-visible {
+    outline: 2px solid var(--ivory-orange);
+    outline-offset: 2px;
+}
+
+.menu-choice-name {
+    grid-area: name;
+    color: #eee9df;
+    font-size: 12px;
+    line-height: 1.25;
+}
+
+.menu-choice-price {
+    grid-area: price;
+    color: #e9b17b;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.menu-choice-action {
+    grid-area: action;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(247, 244, 238, .1);
+    padding-top: 5px;
+    color: #d4af37;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
 }
 
 /* FEATURED DISH */
@@ -1416,6 +1505,10 @@ section[id] {
         grid-template-columns: 1fr;
     }
 
+    .rice-platter-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .west-african-stew-grid {
         grid-template-columns: 1fr;
     }
@@ -1525,6 +1618,14 @@ font-size:18px;
     .menu-section{
         margin:36px auto;
         padding:26px 20px;
+    }
+
+    .rice-platter-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-choice-options {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
     }
 
     .featured-dish{

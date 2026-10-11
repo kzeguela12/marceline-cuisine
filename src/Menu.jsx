@@ -44,19 +44,17 @@ const platterProteins = [
   { name: "Grilled Fish", price: 27 },
 ];
 
+const ricePlatters = riceChoices.map((rice) => ({
+  name: rice,
+  options: platterProteins,
+}));
+
 const grilledDishes = [
   { name: "Chicken Kabobs", price: 18 },
   { name: "Beef Kabobs", price: 20 },
   { name: "Grilled Chicken", price: 20 },
   { name: "Lamb", price: 27 },
 ];
-
-const ricePlatters = riceChoices.flatMap((rice) =>
-  platterProteins.map((protein) => ({
-    name: `${rice} Platter with ${protein.name}`,
-    price: protein.price,
-  })),
-);
 
 const soups = [
   { name: "Placali & Palm Soup", price: 25 },
@@ -90,6 +88,34 @@ function MenuItems({ items, onAddToCart }) {
           </button>
         </div>
       ))}
+    </div>
+  );
+}
+
+function MenuChoiceGroup({ title, choices, itemName, onAddToCart }) {
+  return (
+    <div className="menu-choice-group">
+      <h3>{title}</h3>
+      <div className="menu-choice-options">
+        {choices.map((choice) => {
+          const name = itemName(choice);
+          return (
+            <button
+              className="menu-choice-button"
+              key={choice.name}
+              onClick={() => onAddToCart({ name, price: choice.price })}
+              type="button"
+              aria-label={`Add ${name} for $${choice.price}`}
+            >
+              <span className="menu-choice-name">{choice.name}</span>
+              <span className="menu-choice-price">${choice.price}</span>
+              <span className="menu-choice-action">
+                Add <span aria-hidden="true">+</span>
+              </span>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -224,11 +250,13 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
                 src={image}
                 alt={`${name} with Placali`}
               />
-              <MenuItems
-                items={options.map(({ protein, price }) => ({
-                  name: `${name} with ${protein} & Placali`,
+              <MenuChoiceGroup
+                title={`${name} with Placali`}
+                choices={options.map(({ protein, price }) => ({
+                  name: protein,
                   price,
                 }))}
+                itemName={(choice) => `${name} with ${choice.name} & Placali`}
                 onAddToCart={onAddToCart}
               />
             </article>
@@ -256,7 +284,19 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
             comes with grilled chicken for $25 or grilled fish for $27, plus
             vegetables.
           </p>
-          <MenuItems items={ricePlatters} onAddToCart={onAddToCart} />
+          <div className="rice-platter-grid">
+            {ricePlatters.map((platter) => (
+              <MenuChoiceGroup
+                key={platter.name}
+                title={platter.name}
+                choices={platter.options}
+                itemName={(choice) =>
+                  `${platter.name} Platter with ${choice.name}`
+                }
+                onAddToCart={onAddToCart}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
