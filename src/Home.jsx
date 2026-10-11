@@ -42,6 +42,11 @@ export default function Home({ cartCount }) {
       <header className="site-header">
         <a className="site-brand" href="#home">
           Marceline <span>Cuisine</span>
+          <span className="ivory-flag" role="img" aria-label="Côte d’Ivoire flag">
+            <i />
+            <i />
+            <i />
+          </span>
         </a>
         <nav className="site-nav" aria-label="Main navigation">
           <a href="#home">Home</a>
@@ -75,7 +80,15 @@ export default function Home({ cartCount }) {
           <p className="hero-description">
             Authentic Ivorian &amp; West African Cuisine
           </p>
-          <p className="hero-details">Catering • Private Events</p>
+          <p className="hero-details">
+            <span className="ivory-flag" role="img" aria-label="Côte d’Ivoire flag">
+              <i />
+              <i />
+              <i />
+            </span>
+            Ivorian roots <span aria-hidden="true">•</span> Catering{" "}
+            <span aria-hidden="true">•</span> Private Events
+          </p>
           <Link className="hero-button" to="/menu">
             Explore Our Menu
           </Link>
@@ -88,7 +101,7 @@ export default function Home({ cartCount }) {
         </div>
       </section>
 
-      <section className="featured" id="featured">
+      <section className="featured cultural-palm" id="featured">
         <h2>Featured Dishes</h2>
 
         <div className="food-grid">
@@ -137,7 +150,7 @@ export default function Home({ cartCount }) {
         </div>
       </section>
 
-      <section className="gallery-section" id="gallery">
+      <section className="gallery-section cultural-palm" id="gallery">
         <div className="gallery-intro">
           <p className="section-eyebrow">A look into our kitchen</p>
           <h2>From Our Kitchen</h2>
@@ -156,7 +169,7 @@ export default function Home({ cartCount }) {
         </div>
       </section>
 
-      <section className="about-section" id="about">
+      <section className="about-section cultural-palm" id="about">
         <div className="about-layout">
           <div
             className="about-portrait-placeholder"
@@ -189,7 +202,7 @@ export default function Home({ cartCount }) {
         </div>
       </section>
 
-      <section className="catering-section" id="catering">
+      <section className="catering-section cultural-palm" id="catering">
         <div className="catering-intro">
           <p className="section-eyebrow">Gather around something wonderful</p>
           <h2>Catering for Every Celebration</h2>
@@ -228,7 +241,7 @@ export default function Home({ cartCount }) {
         </div>
       </section>
 
-      <section className="contact-section" id="contact">
+      <section className="contact-section cultural-palm" id="contact">
         <div className="contact-intro">
           <p className="section-eyebrow">We would love to hear from you</p>
           <h2>Contact Marceline Cuisine</h2>

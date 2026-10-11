@@ -94,9 +94,11 @@ function MenuItems({ items, onAddToCart }) {
   );
 }
 
-function MenuSection({ title, items, onAddToCart, image }) {
+function MenuSection({ title, items, onAddToCart, image, cultural = false }) {
   return (
-    <section className={`menu-section${image ? " menu-section-with-image" : ""}`}>
+    <section
+      className={`menu-section${image ? " menu-section-with-image" : ""}${cultural ? " cultural-palm" : ""}`}
+    >
       <div>
         <h2>{title}</h2>
         <MenuItems items={items} onAddToCart={onAddToCart} />
@@ -180,6 +182,14 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         </Link>
         <h1>Our Menu</h1>
         <p>Authentic West African Cuisine</p>
+        <p className="menu-culture-label">
+          <span className="ivory-flag" role="img" aria-label="Côte d’Ivoire flag">
+            <i />
+            <i />
+            <i />
+          </span>
+          Ivorian roots, made with love
+        </p>
         <a className="menu-cart-link" href="#order">
           Your Order <span>{cartCount}</span>
         </a>
@@ -189,13 +199,14 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         title="Appetizers"
         items={appetizers}
         onAddToCart={onAddToCart}
+        cultural
         image={{
           src: plantainBeignets,
           alt: "Golden plantain beignets",
         }}
       />
 
-      <section className="featured-dish">
+      <section className="featured-dish cultural-palm">
         <img src={fishOnPlate} alt="Grilled fish served with traditional sides" />
         <div>
           <h2>Signature Entrées</h2>
@@ -203,7 +214,7 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         </div>
       </section>
 
-      <section className="menu-section west-african-stews">
+      <section className="menu-section west-african-stews cultural-palm">
         <h2>West African Stews</h2>
         <div className="west-african-stew-grid">
           {westAfricanStews.map(({ image, name, options }) => (
@@ -225,7 +236,7 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         </div>
       </section>
 
-      <section className="featured-dish reverse">
+      <section className="featured-dish reverse cultural-palm">
         <div>
           <h2>From the Grill</h2>
           <p className="rice-platter-note">
@@ -236,7 +247,7 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         <img src={brochetteOnPlate} alt="A plated serving of grilled brochettes" />
       </section>
 
-      <section className="featured-dish">
+      <section className="featured-dish cultural-palm">
         <img src={riceNew} alt="A tray of seasoned West African rice" />
         <div>
           <h2>Rice &amp; Attiéké Platters</h2>
@@ -253,6 +264,7 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         title="Soups"
         items={soups}
         onAddToCart={onAddToCart}
+        cultural
         image={{
           src: okraSoup,
           alt: "West African okra soup",
@@ -260,7 +272,7 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         }}
       />
 
-      <section className="featured-dish reverse sides-feature">
+      <section className="featured-dish reverse sides-feature cultural-palm">
         <img src={fries} alt="Loaded fries with house-made toppings" />
         <div>
           <h2>Sides</h2>
@@ -268,7 +280,7 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         </div>
       </section>
 
-      <MenuSection title="Drinks" items={drinks} onAddToCart={onAddToCart} />
+      <MenuSection title="Drinks" items={drinks} onAddToCart={onAddToCart} cultural />
 
       <p className="menu-note">
         All entrée dishes are served with your choice of Rice or Attiéké.

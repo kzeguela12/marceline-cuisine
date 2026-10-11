@@ -1,3 +1,9 @@
+:root {
+    --ivory-orange: #df7738;
+    --ivory-green: #4f9b62;
+    --ivory-white: #f7f4ee;
+}
+
 .site-header {
     position: relative;
     z-index: 2;
@@ -10,7 +16,26 @@
     background: #11100e;
 }
 
+.site-header::after {
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        var(--ivory-orange) 0 33%,
+        var(--ivory-white) 33% 66%,
+        var(--ivory-green) 66%
+    );
+    content: "";
+    opacity: .72;
+}
+
 .site-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
     color: #d4af37;
     font-family: "Cormorant Garamond", Georgia, serif;
     font-size: 28px;
@@ -22,6 +47,38 @@
 .site-brand span {
     color: #f7f4ee;
     font-size: .78em;
+}
+
+.site-brand .ivory-flag {
+    font-size: initial;
+}
+
+.ivory-flag {
+    display: inline-flex;
+    width: 24px;
+    height: 16px;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border-radius: 2px;
+    vertical-align: middle;
+    box-shadow: 0 0 0 1px rgba(247, 244, 238, .2);
+}
+
+.ivory-flag i {
+    display: block;
+    flex: 1;
+}
+
+.ivory-flag i:nth-child(1) {
+    background: var(--ivory-orange);
+}
+
+.ivory-flag i:nth-child(2) {
+    background: var(--ivory-white);
+}
+
+.ivory-flag i:nth-child(3) {
+    background: var(--ivory-green);
 }
 
 .nav-order-link span,
@@ -178,6 +235,11 @@ section[id] {
     font-size: clamp(15px, 2vw, 19px);
 }
 
+.hero-details .ivory-flag {
+    margin-right: 9px;
+    transform: translateY(2px);
+}
+
 .hero-button {
     display: inline-block;
     margin-top: 32px;
@@ -223,6 +285,7 @@ section[id] {
 }
 
 .featured {
+    position: relative;
     padding: 76px clamp(20px, 6vw, 88px) 96px;
     background: #111;
     color: #f7f4ee;
@@ -237,12 +300,14 @@ section[id] {
 }
 
 .about-section {
+    position: relative;
     padding: clamp(64px, 9vw, 120px) clamp(20px, 7vw, 100px);
     background: #191713;
     color: #eee9df;
 }
 
 .gallery-section {
+    position: relative;
     padding: clamp(68px, 9vw, 116px) clamp(20px, 7vw, 100px);
     background:
         radial-gradient(ellipse at 50% 0, rgba(212, 175, 55, .08), transparent 42%),
@@ -382,7 +447,7 @@ section[id] {
 
 .portrait-label,
 .section-eyebrow {
-    color: #d4af37;
+    color: var(--ivory-orange);
     font-size: 12px;
     font-weight: 600;
     letter-spacing: .18em;
@@ -444,6 +509,7 @@ section[id] {
 }
 
 .catering-section {
+    position: relative;
     padding: clamp(68px, 9vw, 116px) clamp(20px, 7vw, 100px);
     background:
         radial-gradient(ellipse at 50% 0, rgba(212, 175, 55, .08), transparent 42%),
@@ -542,6 +608,7 @@ section[id] {
 }
 
 .contact-section {
+    position: relative;
     padding: clamp(68px, 9vw, 116px) clamp(20px, 7vw, 100px);
     background: #191713;
     color: #f7f4ee;
@@ -825,7 +892,7 @@ section[id] {
 }
 
 .menu-page{
-    --cuisine-orange:#e47b35;
+    --cuisine-orange:var(--ivory-orange);
     background:
         radial-gradient(ellipse at 8% 0%, rgba(228,123,53,.08), transparent 28%),
         #111;
@@ -846,9 +913,9 @@ section[id] {
     margin: 24px auto 0;
     background: linear-gradient(
         90deg,
-        var(--cuisine-orange) 0 33%,
-        #f7f4ee 33% 66%,
-        #4f9b62 66%
+        var(--ivory-orange) 0 33%,
+        var(--ivory-white) 33% 66%,
+        var(--ivory-green) 66%
     );
     content: "";
 }
@@ -891,9 +958,43 @@ section[id] {
     letter-spacing:2px;
 }
 
+.menu-header .menu-culture-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 14px;
+    color: #d9b08e;
+    font-size: 12px;
+    letter-spacing: .12em;
+}
+
+.cultural-palm {
+    isolation: isolate;
+}
+
+.cultural-palm::after {
+    position: absolute;
+    z-index: 0;
+    top: 24px;
+    right: clamp(18px, 4vw, 48px);
+    width: 78px;
+    height: 94px;
+    background: url("/palm-frond.svg") center / contain no-repeat;
+    content: "";
+    opacity: .2;
+    pointer-events: none;
+}
+
+.cultural-palm > * {
+    position: relative;
+    z-index: 1;
+}
+
 /* SECTION */
 
 .menu-section{
+    position: relative;
     max-width:900px;
     margin:56px auto;
     padding:36px clamp(22px, 5vw, 48px);
@@ -1396,6 +1497,14 @@ font-size:18px;
     .menu-header p{
         font-size:15px;
         letter-spacing:1px;
+    }
+
+    .cultural-palm::after {
+        top: 16px;
+        right: 16px;
+        width: 58px;
+        height: 70px;
+        opacity: .14;
     }
 
     .menu-section{
