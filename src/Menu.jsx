@@ -89,7 +89,13 @@ function MenuSection({ title, items, onAddToCart, image }) {
         <h2>{title}</h2>
         <MenuItems items={items} onAddToCart={onAddToCart} />
       </div>
-      {image && <img className="menu-section-image" src={image.src} alt={image.alt} />}
+      {image && (
+        <img
+          className={`menu-section-image${image.className ? ` ${image.className}` : ""}`}
+          src={image.src}
+          alt={image.alt}
+        />
+      )}
     </section>
   );
 }
@@ -228,6 +234,7 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         image={{
           src: okraSoup,
           alt: "West African okra soup",
+          className: "menu-section-image-contain",
         }}
       />
 
