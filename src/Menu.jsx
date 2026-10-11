@@ -228,6 +228,9 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
       <section className="featured-dish reverse">
         <div>
           <h2>From the Grill</h2>
+          <p className="rice-platter-note">
+            Served with your choice of Attiéké or Jollof rice.
+          </p>
           <MenuItems items={grilledDishes} onAddToCart={onAddToCart} />
         </div>
         <img src={brochetteOnPlate} alt="A plated serving of grilled brochettes" />
