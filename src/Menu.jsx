@@ -3,21 +3,44 @@ import { Link } from "react-router-dom";
 import "./App.css";
 
 import fries from "./assets/Images/fries.jpg";
-import brochetteOnPlate from "./assets/Images/brochette on plate.jpg";
+import brochetteOnPlate from "./assets/Images/brochette-plate.jpg";
 import fishOnPlate from "./assets/Images/fish-onplate.jpg";
+import fishWithOnions from "./assets/Images/fish-with-onions.jpg";
+import gblofoto from "./assets/Images/gblofoto.jpg";
+import plantain from "./assets/Images/plantain.jpg";
 import plantainBeignets from "./assets/Images/Plantain beignets .png";
 import okraSoup from "./assets/Images/Okra soup.png";
-import riceNew from "./assets/Images/rice-new.jpg";
-import westAfricanGreens from "./assets/Images/SPINICH STEW (1).png";
+import westAfricanGreens from "./assets/Images/SPINICH STEW (1) copy.png";
 
 const emailAddress = "kntamon@yahoo.com";
 
-const appetizers = [
-  { name: "Beignets", price: 10 },
-  { name: "Fried Plantains", price: 5 },
-  { name: "Fried Yuca", price: 5 },
-  { name: "Plantain Beignets", price: 5 },
+const appetizerPhotos = [
+  {
+    name: "Puff Puff",
+    price: 10,
+    image: gblofoto,
+    alt: "Freshly fried West African puff puff",
+  },
+  {
+    name: "Fried Plantains",
+    price: 5,
+    image: plantain,
+    alt: "Golden fried plantains",
+  },
+  {
+    name: "Plantain Beignets",
+    price: 5,
+    image: plantainBeignets,
+    alt: "Golden plantain beignets",
+  },
 ];
+
+const gourmetJollofDish = {
+  name: "Jollof Rice with Fish and Vegetables",
+  price: 27,
+};
+
+const otherAppetizers = [{ name: "Fried Yuca", price: 5 }];
 
 const entrees = [
   { name: "Oxtail and Rice Platter", price: 25 },
@@ -27,7 +50,7 @@ const entrees = [
 
 const westAfricanStews = [
   {
-    name: "West African Greens (Spinach) Stew",
+    name: "Spinach Stew",
     image: westAfricanGreens,
     options: [
       { protein: "Chicken", price: 25 },
@@ -37,7 +60,7 @@ const westAfricanStews = [
   },
 ];
 
-const riceChoices = ["Jollof Rice", "Tchep", "White Rice", "Attiéké"];
+const riceChoices = ["Jollof Rice", "Tchep", "Attiéké"];
 
 const platterProteins = [
   { name: "Grilled Chicken", price: 25 },
@@ -53,15 +76,17 @@ const grilledDishes = [
   { name: "Chicken Kabobs", price: 18 },
   { name: "Beef Kabobs", price: 20 },
   { name: "Grilled Chicken", price: 20 },
-  { name: "Lamb", price: 27 },
+  { name: "Lamb Digbi", price: 27 },
 ];
 
 const soups = [
-  { name: "Placali & Palm Soup", price: 25 },
+  { name: "Cassava Dough & Palm Soup", price: 25 },
+  { name: "Palm Soup with White Rice", price: 25 },
   { name: "Peanut Butter Soup", price: 20 },
   { name: "Kedjenou & Attiéké", price: 25 },
-  { name: "Cassava Dough with Okra Soup", price: 25 },
 ];
+
+const okraSoupDish = { name: "Cassava Dough with Okra Soup", price: 25 };
 
 const sides = [{ name: "Loaded Fries", price: 14 }];
 
@@ -209,11 +234,6 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         <h1>Our Menu</h1>
         <p>Authentic West African Cuisine</p>
         <p className="menu-culture-label">
-          <span className="ivory-flag" role="img" aria-label="Côte d’Ivoire flag">
-            <i />
-            <i />
-            <i />
-          </span>
           Ivorian roots, made with love
         </p>
         <a className="menu-cart-link" href="#order">
@@ -221,19 +241,29 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         </a>
       </div>
 
-      <MenuSection
-        title="Appetizers"
-        items={appetizers}
-        onAddToCart={onAddToCart}
-        cultural
-        image={{
-          src: plantainBeignets,
-          alt: "Golden plantain beignets",
-        }}
-      />
+      <section className="menu-section cultural-palm">
+        <h2>Appetizers</h2>
+        <div className="appetizer-photo-grid">
+          {appetizerPhotos.map(({ name, price, image, imageClass, alt }) => (
+            <article className="appetizer-photo-card" key={name}>
+              <img
+                className={imageClass}
+                src={image}
+                alt={alt}
+              />
+              <h3>{name}</h3>
+              <MenuItems
+                items={[{ name, price }]}
+                onAddToCart={onAddToCart}
+              />
+            </article>
+          ))}
+        </div>
+        <MenuItems items={otherAppetizers} onAddToCart={onAddToCart} />
+      </section>
 
       <section className="featured-dish cultural-palm">
-        <img src={fishOnPlate} alt="Grilled fish served with traditional sides" />
+        <img src={fishWithOnions} alt="Braised fish topped with onions and vegetables" />
         <div>
           <h2>Signature Entrées</h2>
           <MenuItems items={entrees} onAddToCart={onAddToCart} />
@@ -246,17 +276,17 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
           {westAfricanStews.map(({ image, name, options }) => (
             <article className="west-african-stew-card" key={name}>
               <img
-                className="west-african-stew-image"
+                className="west-african-stew-image west-african-stew-image-contain"
                 src={image}
-                alt={`${name} with Placali`}
+                alt={name}
               />
               <MenuChoiceGroup
-                title={`${name} with Placali`}
+                title={name}
                 choices={options.map(({ protein, price }) => ({
                   name: protein,
                   price,
                 }))}
-                itemName={(choice) => `${name} with ${choice.name} & Placali`}
+                itemName={(choice) => `${name} with ${choice.name}`}
                 onAddToCart={onAddToCart}
               />
             </article>
@@ -272,17 +302,24 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
           </p>
           <MenuItems items={grilledDishes} onAddToCart={onAddToCart} />
         </div>
-        <img src={brochetteOnPlate} alt="A plated serving of grilled brochettes" />
+        <img
+          className="menu-grill-image"
+          src={brochetteOnPlate}
+          alt="A plated serving of grilled brochettes"
+        />
       </section>
 
       <section className="featured-dish cultural-palm">
-        <img src={riceNew} alt="A tray of seasoned West African rice" />
+        <img
+          className="menu-featured-image-contain"
+          src={fishOnPlate}
+          alt="Grilled fish served with Attiéké and vegetables"
+        />
         <div>
           <h2>Rice &amp; Attiéké Platters</h2>
           <p className="rice-platter-note">
-            Choose Jollof Rice, Tchep, White Rice, or Attiéké. Each platter
-            comes with grilled chicken for $25 or grilled fish for $27, plus
-            vegetables.
+            Choose Jollof Rice, Tchep, or Attiéké. Each platter comes with
+            grilled chicken for $25 or grilled fish for $27, plus vegetables.
           </p>
           <div className="rice-platter-grid">
             {ricePlatters.map((platter) => (
@@ -297,19 +334,27 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
               />
             ))}
           </div>
+          <MenuItems items={[gourmetJollofDish]} onAddToCart={onAddToCart} />
         </div>
       </section>
 
+      <section className="featured-dish reverse cultural-palm">
+        <div>
+          <h2>Cassava Dough with Okra Soup</h2>
+          <MenuItems items={[okraSoupDish]} onAddToCart={onAddToCart} />
+        </div>
+        <img
+          className="menu-featured-image-contain"
+          src={okraSoup}
+          alt="A bowl of West African okra soup"
+        />
+      </section>
+
       <MenuSection
-        title="Soups"
+        title="Other Soups"
         items={soups}
         onAddToCart={onAddToCart}
         cultural
-        image={{
-          src: okraSoup,
-          alt: "West African okra soup",
-          className: "menu-section-image-contain",
-        }}
       />
 
       <section className="featured-dish reverse sides-feature cultural-palm">

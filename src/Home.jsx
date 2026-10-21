@@ -9,11 +9,13 @@ import rice from "./assets/Images/rice.jpg";
 import fries from "./assets/Images/fries.jpg";
 import gblofoto from "./assets/Images/gblofoto.jpg";
 import brochette from "./assets/Images/brochette.jpg";
-import brochetteOnPlate from "./assets/Images/brochette on plate.jpg";
+import brochetteOnPlate from "./assets/Images/brochette-plate.jpg";
 import fishVege from "./assets/Images/fish-vege.jpg";
 import plantain from "./assets/Images/plantain.jpg";
 import riceNew from "./assets/Images/rice-new.jpg";
 import vegetables from "./assets/Images/vege.jpg";
+import gourmetJollof from "./assets/Images/Gourmet Jollof Rice with Fish and Vegetables.png";
+import plantainBeignets from "./assets/Images/Plantain beignets .png";
 
 const cateringEvents = [
   "Weddings",
@@ -28,12 +30,21 @@ const cateringEvents = [
 const galleryPhotos = [
   { src: previousHero, alt: "Marceline Cuisine's original featured fish dish" },
   { src: brochette, alt: "Freshly prepared grilled brochettes" },
-  { src: brochetteOnPlate, alt: "A plated West African favorite" },
+  {
+    src: brochetteOnPlate,
+    alt: "A plated West African favorite",
+    imageClass: "gallery-photo-image-grill",
+  },
   { src: hero, alt: "A fish dish served with traditional sides" },
   { src: fishVege, alt: "Fish and vegetables prepared with fresh herbs" },
   { src: plantain, alt: "Golden fried plantains" },
   { src: riceNew, alt: "A tray of seasoned West African rice" },
   { src: vegetables, alt: "Colorful vegetables prepared for a meal" },
+  {
+    src: gourmetJollof,
+    alt: "Jollof rice served with fish and vegetables",
+  },
+  { src: plantainBeignets, alt: "Golden plantain beignets" },
 ];
 
 export default function Home({ cartCount }) {
@@ -42,11 +53,6 @@ export default function Home({ cartCount }) {
       <header className="site-header">
         <a className="site-brand" href="#home">
           Marceline <span>Cuisine</span>
-          <span className="ivory-flag" role="img" aria-label="Côte d’Ivoire flag">
-            <i />
-            <i />
-            <i />
-          </span>
         </a>
         <nav className="site-nav" aria-label="Main navigation">
           <a href="#home">Home</a>
@@ -81,11 +87,6 @@ export default function Home({ cartCount }) {
             Authentic Ivorian &amp; West African Cuisine
           </p>
           <p className="hero-details">
-            <span className="ivory-flag" role="img" aria-label="Côte d’Ivoire flag">
-              <i />
-              <i />
-              <i />
-            </span>
             Ivorian roots <span aria-hidden="true">•</span> Catering{" "}
             <span aria-hidden="true">•</span> Private Events
           </p>
@@ -115,10 +116,10 @@ export default function Home({ cartCount }) {
           </article>
 
           <article className="food-card">
-            <img src={lamb} alt="Grilled lamb skewers" />
-            <h3>Lamb Skewers</h3>
+            <img src={lamb} alt="Lamb digbi served with savory onions" />
+            <h3>Lamb Digbi</h3>
             <p>
-              Tender marinated lamb grilled over an open flame with vegetables.
+              Tender grilled lamb served with savory onions and vegetables.
             </p>
           </article>
 
@@ -140,11 +141,34 @@ export default function Home({ cartCount }) {
           </article>
 
           <article className="food-card">
-            <img src={gblofoto} alt="A freshly prepared dish from Marceline Cuisine" />
-            <h3>A Taste of Marceline</h3>
+            <img src={gblofoto} alt="Freshly fried West African puff puff" />
+            <h3>Puff Puff</h3>
             <p>
-              Golden, fluffy beignets, freshly fried and served warm for a
-              delightful taste of home.
+              Golden, fluffy West African beignets, freshly fried and served
+              warm.
+            </p>
+          </article>
+
+          <article className="food-card">
+            <img
+              src={plantainBeignets}
+              alt="Golden plantain beignets served fresh"
+            />
+            <h3>Plantain Beignets</h3>
+            <p>
+              Sweet plantain beignets, fried until golden and served warm.
+            </p>
+          </article>
+
+          <article className="food-card">
+            <img
+              src={gourmetJollof}
+              alt="Jollof rice served with fish and vegetables"
+            />
+            <h3>Jollof Rice with Fish and Vegetables</h3>
+            <p>
+              Richly seasoned jollof rice served with fish and fresh
+              vegetables.
             </p>
           </article>
         </div>
@@ -162,7 +186,12 @@ export default function Home({ cartCount }) {
         <div className="gallery-grid">
           {galleryPhotos.map((photo) => (
             <figure className="gallery-photo" key={photo.src}>
-              <img src={photo.src} alt={photo.alt} loading="lazy" />
+              <img
+                className={photo.imageClass}
+                src={photo.src}
+                alt={photo.alt}
+                loading="lazy"
+              />
               <figcaption>{photo.alt}</figcaption>
             </figure>
           ))}
