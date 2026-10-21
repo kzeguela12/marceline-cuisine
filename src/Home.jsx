@@ -61,7 +61,7 @@ export default function Home({ cartCount }) {
           <a href="#catering">Catering</a>
           <a href="#contact">Contact</a>
           <Link to="/menu">Menu</Link>
-          <Link className="nav-order-link" to="/menu#order">
+          <Link className="nav-order-link" to="/menu#food">
             Order <span>{cartCount}</span>
           </Link>
         </nav>
@@ -93,7 +93,7 @@ export default function Home({ cartCount }) {
           <Link className="hero-button" to="/menu">
             Explore Our Menu
           </Link>
-          <Link className="hero-secondary-button" to="/menu#order">
+          <Link className="hero-secondary-button" to="/menu#food">
             Order Pickup
           </Link>
           <a className="hero-text-link" href="#catering">
@@ -346,7 +346,7 @@ export default function Home({ cartCount }) {
             </p>
           </div>
           <div className="online-order-buttons">
-            <Link className="catering-quote-button" to="/menu#order">
+            <Link className="catering-quote-button" to="/menu#food">
               Order Pickup
             </Link>
             <a

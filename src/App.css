@@ -1212,6 +1212,17 @@ section[id] {
     object-fit: contain;
 }
 
+.rice-platter-images {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.featured-dish .rice-platter-images img {
+    height: clamp(170px, 28vw, 300px);
+    object-fit: contain;
+}
+
 .featured-dish h2{
     font-family:"Cormorant Garamond",serif;
     color:#D4AF37;

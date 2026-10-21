@@ -6,6 +6,7 @@ import fries from "./assets/Images/fries.jpg";
 import brochetteOnPlate from "./assets/Images/brochette-plate.jpg";
 import fishOnPlate from "./assets/Images/fish-onplate.jpg";
 import fishWithOnions from "./assets/Images/fish-with-onions.jpg";
+import gourmetJollof from "./assets/Images/Gourmet Jollof Rice with Fish and Vegetables.png";
 import gblofoto from "./assets/Images/gblofoto.jpg";
 import plantain from "./assets/Images/plantain.jpg";
 import plantainBeignets from "./assets/Images/Plantain beignets .png";
@@ -175,8 +176,10 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
   );
 
   useEffect(() => {
-    if (window.location.hash === "#order") {
-      document.getElementById("order")?.scrollIntoView();
+    if (window.location.hash === "#food" || window.location.hash === "#order") {
+      document
+        .getElementById(window.location.hash.slice(1))
+        ?.scrollIntoView();
     }
   }, []);
 
@@ -241,7 +244,7 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
         </a>
       </div>
 
-      <section className="menu-section cultural-palm">
+      <section className="menu-section cultural-palm" id="food">
         <h2>Appetizers</h2>
         <div className="appetizer-photo-grid">
           {appetizerPhotos.map(({ name, price, image, imageClass, alt }) => (
@@ -310,11 +313,18 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
       </section>
 
       <section className="featured-dish cultural-palm">
-        <img
-          className="menu-featured-image-contain"
-          src={fishOnPlate}
-          alt="Grilled fish served with Attiéké and vegetables"
-        />
+        <div className="rice-platter-images">
+          <img
+            className="menu-featured-image-contain"
+            src={fishOnPlate}
+            alt="Grilled fish served with Attiéké and vegetables"
+          />
+          <img
+            className="menu-featured-image-contain"
+            src={gourmetJollof}
+            alt="Jollof rice served with fish and vegetables"
+          />
+        </div>
         <div>
           <h2>Rice &amp; Attiéké Platters</h2>
           <p className="rice-platter-note">
