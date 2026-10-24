@@ -1078,8 +1078,36 @@ section[id] {
 
 .rice-platter-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.signature-rice-section {
+    max-width: 1200px;
+}
+
+.rice-platter-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
     gap: 12px;
+    padding: 12px;
+    border: 1px solid rgba(212, 175, 55, .28);
+    background: rgba(9, 9, 8, .45);
+}
+
+.rice-platter-card > img {
+    display: block;
+    width: 100%;
+    height: 260px;
+    border: 1px solid rgba(212, 175, 55, .38);
+    padding: 6px;
+    background: #090908;
+    object-fit: contain;
+}
+
+.rice-platter-card .menu-choice-group {
+    flex: 1;
 }
 
 .menu-choice-group {
@@ -1209,17 +1237,6 @@ section[id] {
 }
 
 .featured-dish img.menu-featured-image-contain {
-    object-fit: contain;
-}
-
-.rice-platter-images {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-}
-
-.featured-dish .rice-platter-images img {
-    height: clamp(170px, 28vw, 300px);
     object-fit: contain;
 }
 
