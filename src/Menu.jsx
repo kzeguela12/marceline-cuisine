@@ -13,7 +13,7 @@ import plantainBeignets from "./assets/Images/Plantain beignets .png";
 import okraSoup from "./assets/Images/Okra soup.png";
 import westAfricanGreens from "./assets/Images/SPINICH STEW (1) copy.png";
 
-const emailAddress = "kntamon@yahoo.com";
+const emailAddress = "Marcecuisine@gmail.com";
 
 const appetizerPhotos = [
   {
@@ -552,7 +552,7 @@ export default function Menu({ cart, onAddToCart, onRemoveFromCart }) {
                 I’ve Sent Payment — Email My Order
               </button>
               <p className="payment-note">
-                This opens a prefilled email to kntamon@yahoo.com. Review it
+                This opens a prefilled email to Marcecuisine@gmail.com. Review it
                 and press Send in your email app. We do not receive your order
                 until you send the email, and we’ll verify payment before
                 confirming it.

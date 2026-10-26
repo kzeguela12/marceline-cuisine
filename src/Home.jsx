@@ -263,7 +263,7 @@ export default function Home({ cartCount }) {
           </div>
           <a
             className="catering-quote-button"
-            href={`mailto:kntamon@yahoo.com?subject=${encodeURIComponent("Catering quote request")}&body=${encodeURIComponent("Hello Marceline Cuisine,\n\nI would like to request a catering quote.\n\nEvent type:\nEvent date:\nGuest count:\nLocation:\nFavorite dishes or other details:\n\nThank you!")}`}
+            href={`mailto:Marcecuisine@gmail.com?subject=${encodeURIComponent("Catering quote request")}&body=${encodeURIComponent("Hello Marceline Cuisine,\n\nI would like to request a catering quote.\n\nEvent type:\nEvent date:\nGuest count:\nLocation:\nFavorite dishes or other details:\n\nThank you!")}`}
           >
             Request Catering Quote
           </a>
@@ -296,10 +296,10 @@ export default function Home({ cartCount }) {
             <span className="contact-label">Phone</span>
             <span>(443) 600-0457</span>
           </a>
-          <a className="contact-card" href="mailto:kntamon@yahoo.com">
+          <a className="contact-card" href="mailto:Marcecuisine@gmail.com">
             <span className="contact-icon" aria-hidden="true">@</span>
             <span className="contact-label">Email</span>
-            <span>kntamon@yahoo.com</span>
+            <span>Marcecuisine@gmail.com</span>
           </a>
         </div>
 
@@ -326,7 +326,7 @@ export default function Home({ cartCount }) {
               <span className="social-icon" aria-hidden="true">◉</span>
               WhatsApp
             </a>
-            <a href="mailto:kntamon@yahoo.com" rel="noreferrer" target="_blank">
+            <a href="mailto:Marcecuisine@gmail.com" rel="noreferrer" target="_blank">
               <span className="social-icon" aria-hidden="true">@</span>
               Email
             </a>
@@ -351,7 +351,7 @@ export default function Home({ cartCount }) {
             </Link>
             <a
               className="outline-button"
-              href={`mailto:kntamon@yahoo.com?subject=${encodeURIComponent("Catering request")}`}
+              href={`mailto:Marcecuisine@gmail.com?subject=${encodeURIComponent("Catering request")}`}
             >
               Request Catering
             </a>
